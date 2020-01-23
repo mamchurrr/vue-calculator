@@ -1,19 +1,37 @@
 <template>
     <div class="hello">
         <h1>{{ title }}</h1>
-        <input type="number" v-model.number="argA" />
-        <input type="number" v-model.number="argB" />
+        <input
+            type="number"
+            v-model.number="argA"
+        />
+        <input
+            type="number"
+            v-model.number="argB"
+        />
 
-        <button v-if="sum" @click="calcSum">
+        <button
+            v-if="!!sum"
+            @click="calcSum"
+        >
             сумма
         </button>
-        <button v-if="subtraction" @click="calcSubtraction">
+        <button
+            v-if="!!subtraction"
+            @click="calcSubtraction"
+        >
             вычитание
         </button>
-        <button v-if="multiplication" @click="calcMultiplication">
+        <button
+            v-if="!!multiplication"
+            @click="calcMultiplication"
+        >
             умножение
         </button>
-        <button v-if="division" @click="calcDivision">
+        <button
+            v-if="!!division"
+            @click="calcDivision"
+        >
             деление
         </button>
 
@@ -29,7 +47,7 @@ export default {
         sum: {
             type: [Boolean, String],
             default: true,
-            validator: function(value) {
+            validator: function (value) {
                 if (typeof value !== 'boolean') {
                     // The value must match one of these strings
                     return ['withLogic'].indexOf(value) !== -1;
@@ -40,7 +58,7 @@ export default {
         subtraction: {
             type: [Boolean, String],
             default: false,
-            validator: function(value) {
+            validator: function (value) {
                 if (typeof value !== 'boolean') {
                     // The value must match one of these strings
                     return ['withLogic'].indexOf(value) !== -1;
@@ -51,7 +69,7 @@ export default {
         multiplication: {
             type: [Boolean, String],
             default: false,
-            validator: function(value) {
+            validator: function (value) {
                 if (typeof value !== 'boolean') {
                     // The value must match one of these strings
                     return ['withLogic'].indexOf(value) !== -1;
@@ -62,7 +80,7 @@ export default {
         division: {
             type: [Boolean, String],
             default: false,
-            validator: function(value) {
+            validator: function (value) {
                 if (typeof value !== 'boolean') {
                     // The value must match one of these strings
                     return ['withLogic'].indexOf(value) !== -1;
@@ -71,7 +89,7 @@ export default {
             }
         }
     },
-    data() {
+    data () {
         return {
             result: 0,
             argA: 0,
@@ -79,7 +97,7 @@ export default {
         };
     },
     methods: {
-        calcSum() {
+        calcSum () {
             switch (this.sum) {
                 case 'withLogic':
                     this.$emit('logicSum', this.argA, this.argB);
@@ -89,7 +107,7 @@ export default {
                     break;
             }
         },
-        calcSubtraction() {
+        calcSubtraction () {
             switch (this.subtraction) {
                 case 'withLogic':
                     this.$emit('logicSubtraction', this.argA, this.argB);
@@ -99,7 +117,7 @@ export default {
                     break;
             }
         },
-        calcMultiplication() {
+        calcMultiplication () {
             switch (this.multiplication) {
                 case 'withLogic':
                     this.$emit('logicMultiplication', this.argA, this.argB);
@@ -109,7 +127,7 @@ export default {
                     break;
             }
         },
-        calcDivision() {
+        calcDivision () {
             switch (this.division) {
                 case 'withLogic':
                     this.$emit('logicDivision', this.argA, this.argB);
@@ -118,7 +136,8 @@ export default {
                     this.result = this.argA / this.argB;
                     break;
             }
-        }
+        },
+
     }
 };
 </script>
