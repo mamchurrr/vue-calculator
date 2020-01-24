@@ -30,7 +30,7 @@ export default {
     data () {
         return {
             result: 0,
-            calc: window,
+            calc: {},
         };
     },
     computed: {
