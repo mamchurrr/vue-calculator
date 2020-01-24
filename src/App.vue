@@ -4,6 +4,7 @@
             alt="Vue logo"
             src="./assets/logo.png"
         />
+        {{$calculator}}
         <Calculate
             ref="calculate"
             :sum="sum"
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import * as calculator from '../calculator';
+// import * as calculator from '../plugin/calculator.js';
 import Calculate from './components/Calculate.vue';
 
 export default {
@@ -34,41 +35,48 @@ export default {
         };
     },
     computed: {
+
         sum () {
-            return calculator.sum;
+            return this.$calc.sum;
         },
         subtraction () {
-            return calculator.subtraction;
+            return this.$calc.subtraction;
         },
         division () {
-            return calculator.division;
+            return this.$calc.division;
         },
         multiplication () {
-            return calculator.multiplication;
+            return this.$calc.multiplication;
         }
     },
     methods: {
         logicSum (argA, argB) {
-            this.$refs.calculate.result = calculator.calcSum(argA, argB);
+            this.$refs.calculate.result = this.$calc.calcSum(argA, argB);
             this.result = this.$refs.calculate.result;
             return this.result;
         },
         logicDivision (argA, argB) {
-            this.$refs.calculate.result = calculator.calcDivision(argA, argB);
+            this.$refs.calculate.result = this.$calc.calcDivision(argA, argB);
             this.result = this.$refs.calculate.result;
             return this.result;
         },
         logicSubtraction (argA, argB) {
-            this.$refs.calculate.result = calculator.calcSubtraction(argA, argB);
+            this.$refs.calculate.result = this.$calc.calcSubtraction(argA, argB);
             this.result = this.$refs.calculate.result;
             return this.result;
         },
         logicMultiplication (argA, argB) {
-            this.$refs.calculate.result = calculator.calcMultiplication(argA, argB);
+            this.$refs.calculate.result = this.$calc.calcMultiplication(argA, argB);
             this.result = this.$refs.calculate.result;
             return this.result;
         },
-    }
+    },
+    mounted () {
+        // let recaptchaScript = document.createElement('script');
+        // recaptchaScript.setAttribute('src', '/calculator.js');
+        // document.head.appendChild(recaptchaScript);
+
+    },
 };
 </script>
 
